@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var routes = require('./Routers/index1');
 
-var port = 8900;
+var port = process.env.PORT||8900;
 var hostname = "localhost";
 const app = express();
 app.use(cors());
@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 app.use('/', routes);
 
-mongoose.connect('mongodb+srv://akash:2go14cs001@cluster0.waiho.mongodb.net/TestDB?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGO_URI||'mongodb+srv://akash:2go14cs001@cluster0.waiho.mongodb.net/TestDB?retryWrites=true&w=majority',
     { useNewUrlParser: true, useUnifiedTopology: true })
     .then(
         app.listen(port, hostname, () => {
