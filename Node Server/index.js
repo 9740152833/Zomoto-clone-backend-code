@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var routes = require('./Routers/index1');
 
-var port = process.env.PORT||8900;
-var hostname = "localhost";
+var port = process.env.YOUR_PORT || process.env.PORT ||8900;
+var hostname =  process.env.YOUR_HOST || '0.0.0.0'||"localhost";
 const app = express();
 app.use(cors());
 app.options('*',cors());
