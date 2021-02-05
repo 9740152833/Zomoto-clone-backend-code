@@ -16,7 +16,7 @@ app.use('/', routes);
 mongoose.connect(process.env.MONGO_URI||'mongodb+srv://akash:2go14cs001@cluster0.waiho.mongodb.net/TestDB?retryWrites=true&w=majority',
     { useNewUrlParser: true, useUnifiedTopology: true })
     .then(
-        app.listen(port, hostname, () => {
+        app.listen(process.env.PORT || port, hostname, () => {
             console.log("Server is running on " + hostname + ":" + port);
         })
     ).catch(err => console.log(err));
