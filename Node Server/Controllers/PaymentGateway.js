@@ -46,7 +46,7 @@ exports.payment = (req, res) => {
         params['ORDER_ID'] = uuidv4(),
         params['CUST_ID'] = process.env.PAYTM_CUST_ID,
         params['TXN_AMOUNT'] = totalAmount,
-        params['CALLBACK_URL'] = 'http://localhost:8900/callback',
+        params['CALLBACK_URL'] = 'https://zomoto-clone-backend-code-api.herokuapp.com/callback',
         params['EMAIL'] = email,
         params['MOBILE_NO'] = process.env.MOBILE_NUMBER
 
