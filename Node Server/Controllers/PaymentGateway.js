@@ -105,15 +105,26 @@ exports.callback = (req, res) => {
                         response += chunk;
                     });
                     post_res.on('end', function () {
+                       if(MyApp.orderdetails.length <=1){
                         var finalstatus = response.slice(139, 161);
+                        console.log(finalstatus);
                         var finalstatus1 = finalstatus.slice(10, 21);
+                        console.log(finalstatus1);
                         var finalstatus2 = finalstatus1.toString();
+                        }else{
+                        var finalstatus = response.slice(140, 161);
+                        console.log(finalstatus);
+                        var finalstatus1 = finalstatus.slice(10, 21);
+                        console.log(finalstatus1);
+                        var finalstatus2 = finalstatus1.toString();
+
+                        }
                         if (finalstatus2 == "TXN_SUCCESS") {
-
-                            var itemname = MyApp.orderdetails?MyApp.orderdetails.map(item => item.name):null;
-                            var itemqty = MyApp.orderdetails?MyApp.orderdetails.map(item=>item.qty):null;
-                            var image1 = MyApp.orderdetails?MyApp.orderdetails.map(item=>item.image).toString():null;
-
+                            var itemsname=MyApp.orderdetails ? MyApp.orderdetails.map(item=>item.name):null;
+                            var itemsname2 = itemsname.toString();
+                            var itemsqty=MyApp.orderdetails ? MyApp.orderdetails.map(item=>item.qty):null;
+                            var itemsqty2 = itemsqty.toString();
+                           
                             var message = (
                                 
                                 '<h1 style="color:red;">Orderdetails</h1>'+
@@ -132,8 +143,8 @@ exports.callback = (req, res) => {
                                 '<td>'+ MyApp.number+'</td>'+
                                 '<td>'+MyApp.postaddress+'</td>'+
                                 '<td>'+MyApp.amount+'</td>'+
-                                '<td>'+itemname+'</td>'+
-                                '<td>'+ itemqty+'</td>'+
+                                '<td>'+itemsname2+'</td>'+
+                                '<td>'+itemsqty2+'</td>'+
                                 '<td>'+"Success"+'</td>'+
                                 '<tr/>'+
                                 '</table>'
