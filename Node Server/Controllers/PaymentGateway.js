@@ -157,7 +157,7 @@ exports.callback = (req, res) => {
 
                             axios({
                                 method: 'POST',
-                                url: 'http://localhost:8900/orderdetails',
+                                url: 'https://zomoto-clone-backend-code-api.herokuapp.com/orderdetails',
                                 headers: { 'Content-Type': 'application/json' },
                                 data: MyApp
                             }).then(response => {
@@ -171,7 +171,7 @@ exports.callback = (req, res) => {
                                 service: 'Gmail',
                                 auth: {
                                     user: 'akashronad48@gmail.com',
-                                    pass: 'skuijvbriohxhgau',
+                                    pass: 'yppygqrrnxmeodnx',
                                 },
 
                             });
