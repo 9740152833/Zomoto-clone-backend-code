@@ -5,10 +5,24 @@ const https = require('https');
 const PaytmChecksum = require('./PaytmChecksum');
 const nodemailer = require('nodemailer');
 const axios = require('axios');
+const {google} = require('googleapis');
 
 
 
 var MyApp = {};
+var Client_ID = "754535854838-dkjt61msnba8visi1uie4udh10po7u8j.apps.googleusercontent.com";
+var Client_secret="raUwEuGnUF_WmGJCS8gzWDQ7";
+var Redirect_uri="https://developers.google.com/oauthplayground";
+var Refresh_token="1//04lZG9LKTuavTCgYIARAAGAQSNwF-L9Irl70THShSgJxmhuDLw6jff5KCRqhzw9ebH5CE3JESFq1pFsFlLMsNgULD7C1Zznu5rzc";
+
+
+const oAuthzclient = new google.auth.OAuth2(Client_ID,Client_secret,Redirect_uri)
+oAuthzclient.setCredentials({refresh_token:Refresh_token})
+
+
+
+
+
 
 
 
@@ -167,11 +181,16 @@ exports.callback = (req, res) => {
 
 
                             //mail transport method 
+                            const accessToken =  oAuthzclient.getAccessToken();
                             const transport = nodemailer.createTransport({
                                 service: 'Gmail',
                                 auth: {
+                                    type:'OAuth2',
                                     user: 'akashronad48@gmail.com',
-                                    pass: 'yppygqrrnxmeodnx',
+                                    clientId:Client_ID,
+                                    clientSecret:Client_secret,
+                                    refreshToken:Refresh_token,
+                                    accessToken:accessToken
                                 },
 
                             });
